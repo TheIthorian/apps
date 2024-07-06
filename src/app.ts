@@ -1,8 +1,14 @@
 import { data } from './data';
 
 export class App {
+    container: HTMLElement;
+
     public static newInstance() {
         return new App();
+    }
+
+    constructor() {
+        this.container = document.getElementById('container');
     }
 
     public async main() {
@@ -16,6 +22,7 @@ export class App {
         const redirectUrl = data[target];
 
         console.log({ currentUrl, target, redirectUrl });
+        debugger;
 
         if (!redirectUrl) {
             console.log(`No redirect link for target: ${target}`);
@@ -23,28 +30,21 @@ export class App {
             return;
         }
 
+        this.createLinkFor(target);
         window.location = redirectUrl;
     }
 
     private createLinks() {
-        const container = document.getElementById('container');
+        for (const key of Object.keys(data)) {
+            this.createLinkFor(key);
+        }
+    }
 
-        const foundry = document.createElement('a');
-        foundry.setAttribute('id', 'foundry');
-        foundry.setAttribute('href', data.foundry);
-        foundry.innerText = 'foundry';
-        container.appendChild(foundry);
-
-        const theatreSchedule = document.createElement('a');
-        theatreSchedule.setAttribute('id', 'theatre-schedule');
-        theatreSchedule.setAttribute('href', data['theatre-schedule']);
-        theatreSchedule.innerText = 'theatre-schedule';
-        container.appendChild(theatreSchedule);
-
-        const energyDashboard = document.createElement('a');
-        energyDashboard.setAttribute('id', 'energy-dashboard');
-        energyDashboard.setAttribute('href', data['energy-dashboard']);
-        energyDashboard.innerText = 'energy-dashboard';
-        container.appendChild(energyDashboard);
+    private createLinkFor(name: string) {
+        const element = document.createElement('a');
+        element.setAttribute('id', name);
+        element.setAttribute('href', data[name]);
+        element.innerText = name;
+        this.container.appendChild(element);
     }
 }
