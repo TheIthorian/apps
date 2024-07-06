@@ -12,7 +12,7 @@
         "test": "jest",
         "test:all": "jest --all && npm run coverage",
         "test:coverage": "start ./coverage/lcov-report/index.html",
-        "change-url": "ts-node scripts/change-url.ts && git add src/data.ts && git commit -m='bump url' && git push"
+        "change-url": "ts-node scripts/change-url.ts -n $NAME -u $URL && git add src/data.ts && git commit -m='chore: bump url' && git push"
     },
     "author": "",
     "license": "ISC",
