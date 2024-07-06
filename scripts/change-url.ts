@@ -21,7 +21,7 @@ let lines = tsContent.split('\n');
 let found = false;
 for (let i = 0; i < lines.length; i++) {
     if (lines[i].trim().replace(/\'/g, '').startsWith(`${name}:`)) {
-        lines[i] = `    ${name}: '${url}',`;
+        lines[i] = `    '${name}': '${url}',`;
         found = true;
         break;
     }
