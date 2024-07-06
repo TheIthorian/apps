@@ -1,6 +1,6 @@
-## Static-Website-Base
+## Apps
 
-Base template repo to create static websites from
+Links to my apps
 
 ## Installation
 
